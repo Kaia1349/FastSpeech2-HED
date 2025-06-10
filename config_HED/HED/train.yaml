@@ -1,0 +1,22 @@
+path:
+  ckpt_path: "/scratch/s5858895/FastSpeech2/outputs/ESD_HED_HEDExp1/ckpt"
+  log_path: "/scratch/s5858895/FastSpeech2/outputs/ESD_HED_HEDExp1/log"
+  result_path: "/scratch/s5858895/FastSpeech2/outputs/ESD_HED_HEDExp1/result"
+
+optimizer:
+  batch_size: 32            # ✅ 小数据可以适当增大，加速收敛
+  betas: [0.9, 0.98]
+  eps: 0.000000001
+  weight_decay: 0.0
+  grad_clip_thresh: 1.0
+  grad_acc_step: 1
+  warm_up_step: 500         # ✅ 提前升温，不需要4000那么久
+  anneal_steps: [8000, 12000]  # ✅ 训练步数少，所以提前衰减
+  anneal_rate: 0.5
+
+step:
+  total_step: 200000         # ✅ 保持15000步，合理
+  log_step: 50              # ✅ 50步log一次（频率高一点，方便看收敛情况）
+  synth_step: 1000
+  val_step: 1000
+  save_step: 1000
